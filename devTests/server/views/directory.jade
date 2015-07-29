@@ -1,0 +1,28 @@
+extends layout
+
+mixin file(prepend,postpend,f) 
+	a(href=prepend+f.fullPath+postpend)
+		span=f.path
+
+mixin list(prepend,postpend,files)
+	ul(class=key+'-links-container')
+		for f in files
+			- var isDir = f.isDirectory;
+			li(class=key+'-link '+key+(isDir?'-dir':'-file')+'-link')
+				+file(prepend,postpend,f)
+
+mixin title(prepend,postpend,title)
+	- t = title.split('/')
+	- t.shift();
+	- var last = t.pop()
+	- t = t.join('/')
+	a(href=prepend+t+postpend)
+		span.path=t+'/'
+		span.last=last
+
+block content
+	div(class=key+'-container')
+		h1(class=key+'-title')
+			+title(prepend,postpend,title)
+		+list(prepend,postpend,files.directories)
+		+list(prepend,postpend,files.files)

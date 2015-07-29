@@ -1,0 +1,29 @@
+$enter
+	opacity 0.01
+	transition opacity .3s ease-in
+$enter-active
+	opacity 1
+$leave
+	opacity 1
+	transition opacity .3s ease-in
+$leave-active
+	opacity 0.01
+$appear
+	opacity 0.01
+	transition opacity .3s ease-in
+$appear-active
+	opacity 1
+
+transitionGroup(name)
+	.{name}-enter
+		@extend $enter
+		&.{name}-enter-active
+			@extend $enter-active
+	.{name}-leave
+		@extend $leave
+		&.{name}-leave-active
+			@extend $leave-active
+	.{name}-appear
+		@extend $appear
+		&.{name}-appear-active
+			@extend $appear-active

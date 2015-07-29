@@ -1,0 +1,8 @@
+{
+	"scripts":{
+		"compile":"rm -rf ./dist/bundle.* && node ./node_modules/.bin/webpack"
+	,	"dev":"node ./node_modules/.bin/webpack-dev-server --config webpack.devServer.config.js"
+	,	"dev-hot":"node ./node_modules/.bin/webpack-dev-server --config webpack.devServer.config.js --hot"
+	,	"example":"node devTests/server/index.js"
+	}
+}

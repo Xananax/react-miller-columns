@@ -1,0 +1,8 @@
+extends layout
+
+block content
+	h1= message
+	h2= error.status
+	if error.status == 404
+		p="could not find "+error.path
+	pre #{error.stack}

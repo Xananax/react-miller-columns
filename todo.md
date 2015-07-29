@@ -1,0 +1,6 @@
+- support for router
+- if selecting a column that is already open, just switch to that column
+- Add support for properties in items
+- Add modal box for better handling of properties and being able to see images in full screen
+- Adjust scrollbar behavior so it can handle something else than items
+- Add custom classes to differentiate between directories and files

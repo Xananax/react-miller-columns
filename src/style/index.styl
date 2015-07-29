@@ -1,0 +1,160 @@
+body
+	background red
+
+@import 'animations'
+
+itemWidth=7em
+titlesHeight=1.5em
+pref='miller-'
+scrollbarHeight=.5em
+scrollbarWidth=.3em
+
+$container
+	position relative
+	overflow hidden
+
+$pane
+	position absolute
+	transition all .3s ease-out
+	min-width 100%
+	min-height 100%
+
+$noselect
+	-webkit-touch-callout none
+	-webkit-user-select none
+	-khtml-user-select none
+	-moz-user-select none
+	-ms-user-select none
+	user-select none
+
+#Wrapper
+	width 250px
+	height 200px
+	position relative
+
+.{pref}columns-container
+	float left
+	width 100%
+	height 100%
+	background #ccc
+	@extends $container
+
+.{pref}columns-pane
+	width 100%
+	height 100%
+	float left
+	white-space nowrap
+	@extends $pane
+
+transitionGroup('miller-column');
+transitionGroup('miller-item');
+
+.{pref}column
+	height 100%
+	min-width itemWidth
+	position relative
+	display inline-block
+	transition all .3s ease-in-out
+	@extend $noselect
+	&.{pref}column-focus
+		transition all .5s ease-in-out
+		background white
+		
+.{pref}column-title
+	//width 100%
+	position absolute
+	top 0
+	height titlesHeight
+	text-overflow ellipsis
+	h2
+		font-size 1.2em
+		text-overflow ellipsis
+		padding 0
+		margin 0
+	
+.{pref}column-items-container
+	@extends $container,$noselect
+	top titlesHeight
+	bottom scrollbarHeight
+	left 0
+	right scrollbarWidth
+	position absolute
+	ul
+		list-style none
+		padding 0
+		margin 0
+	li
+		list-style none
+		padding 0
+		margin 0
+
+.{pref}column-items-pane
+	@extends $pane
+	height 100%
+	width 100%
+
+.{pref}item
+	transition background .7s ease-in
+	&:focus
+		outline none
+	&.{pref}item-focus
+		transition background .1s ease-in-out
+		background grey
+		
+.{pref}column-focus
+	.{pref}item.{pref}item-focus
+		background #aaa
+
+.{pref}scrollbar-item-inside
+	display block
+	width 100%
+	position absolute
+	height 100%
+	transition all .2s ease-in
+	background teal
+
+.{pref}scrollbar-item
+	display block
+	vertical-align center
+	box-sizing border-box
+	position relative
+	&.{pref}scrollbar-item-selected
+		.{pref}scrollbar-item-inside
+			background black
+		
+
+.{pref}scrollbar
+	position absolute
+	right 0
+	bottom 0
+	background black
+	cursor pointer
+	&.{pref}scrollbar-x
+		left 0
+		height scrollbarHeight
+		width 100%
+		display table
+		.{pref}scrollbar-pane
+			display table-row
+		.{pref}scrollbar-item
+			display table-cell
+		.{pref}scrollbar-handle
+			height 100%
+	&.{pref}scrollbar-y
+		top titlesHeight
+		width scrollbarWidth
+		bottom scrollbarHeight
+		right 0
+		.{pref}scrollbar-pane
+			display table
+			height 100%
+		.{pref}scrollbar-item
+			display table-row
+		.{pref}scrollbar-handle
+			width 100%
+		
+
+.property
+	&.syncing
+		&:after
+			content:'...syncing...'
